@@ -1,12 +1,13 @@
 package com.example.countersmvp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : MvpAppCompatActivity(), MainView {
     private var vb: ActivityMainBinding? = null
-    private val presenter = MainPresenter(this, CountersModel())
+    private val presenter by moxyPresenter { MainPresenter(CountersModel()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
